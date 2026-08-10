@@ -47,10 +47,23 @@ workflow {
     all_gvcfs_ch = GATK_HAPLOTYPECALLER.out.vcf.collect()
     all_idxs_ch = GATK_HAPLOTYPECALLER.out.idx.collect()
 
+    // Combine GVCFs into a GenomicsDB data store and apply joint genotyping
+    GATK_JOINTGENOTYPING(
+        all_gvcfs_ch,
+        all_idxs_ch,
+        intervals_file,
+        params.cohort_name,
+        ref_file,
+        ref_index_file,
+        ref_dict_file
+    )
+
     publish:
     indexed_bam = SAMTOOLS_INDEX.out
     gvcf = GATK_HAPLOTYPECALLER.out.vcf
     gvcf_idx = GATK_HAPLOTYPECALLER.out.idx
+    joint_vcf = GATK_JOINTGENOTYPING.out.vcf
+    joint_vcf_idx = GATK_JOINTGENOTYPING.out.idx
 }
 
 output {
@@ -62,5 +75,11 @@ output {
     }
     gvcf_idx {
         path 'gvcf'
+    }
+    joint_vcf {
+        path '.'
+    }
+    joint_vcf_idx {
+        path '.'
     }
 }
