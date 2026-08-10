@@ -18,8 +18,10 @@ params {
 workflow {
 
     main:
-    // Create input channel (single file via CLI parameter)
+    // Create input channel from a CSV file listing input file paths
     reads_ch = channel.fromPath(params.input)
+            .splitCsv(header: true)
+            .map { row -> file(row.reads_bam) }
     // Load the file paths for the accessory files (reference and intervals)
     ref_file        = file(params.reference)
     ref_index_file  = file(params.reference_index)
