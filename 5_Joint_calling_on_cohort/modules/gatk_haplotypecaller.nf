@@ -23,7 +23,8 @@ process GATK_HAPLOTYPECALLER {
     gatk HaplotypeCaller \
         -R ${ref_fasta} \
         -I ${input_bam} \
-        -O ${input_bam}.vcf \
-        -L ${interval_list}
+        -O ${input_bam}.g.vcf \
+        -L ${interval_list} \
+        -ERC GVCF
     """
 }
