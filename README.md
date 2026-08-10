@@ -3,7 +3,7 @@ Applying Nextflow to a real-world genomics use case: variant calling with GATK.
 
 This repository demonstrates how to use Nextflow in the specific context of the genomics domain.
 
-## 📁 Repository Structure
+## 📁 Data Required
 
 A reference genome consisting of a small region of the human chromosome 20 (from hg19/b37) and its accessory files (index and sequence dictionary).
 
