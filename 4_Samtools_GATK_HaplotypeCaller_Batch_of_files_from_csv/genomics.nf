@@ -5,8 +5,8 @@ include { SAMTOOLS_INDEX } from './modules/samtools_index.nf'
 include { GATK_HAPLOTYPECALLER } from './modules/gatk_haplotypecaller.nf'
 
 params {
-    // Primary input
-    input
+    // Primary input (file of input files, one per line)
+    input: Path
 
     // Accessory files
     reference: Path
