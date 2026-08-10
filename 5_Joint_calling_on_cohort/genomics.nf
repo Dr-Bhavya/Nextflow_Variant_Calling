@@ -42,6 +42,10 @@ workflow {
         intervals_file
     )
 
+    // Collect variant calling outputs across samples
+    all_gvcfs_ch = GATK_HAPLOTYPECALLER.out.vcf.collect()
+    all_idxs_ch = GATK_HAPLOTYPECALLER.out.idx.collect()
+
     publish:
     indexed_bam = SAMTOOLS_INDEX.out
     gvcf = GATK_HAPLOTYPECALLER.out.vcf
