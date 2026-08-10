@@ -13,6 +13,9 @@ params {
     reference_index: Path
     reference_dict: Path
     intervals: Path
+
+    // Base name for final output file
+    cohort_name: String
 }
 
 workflow {
@@ -41,18 +44,18 @@ workflow {
 
     publish:
     indexed_bam = SAMTOOLS_INDEX.out
-    vcf = GATK_HAPLOTYPECALLER.out.vcf
-    vcf_idx = GATK_HAPLOTYPECALLER.out.idx
+    gvcf = GATK_HAPLOTYPECALLER.out.vcf
+    gvcf_idx = GATK_HAPLOTYPECALLER.out.idx
 }
 
 output {
     indexed_bam {
-        path 'bam'
+        path 'indexed_bam'
     }
-    vcf {
-        path 'vcf'
+    gvcf {
+        path 'gvcf'
     }
-    vcf_idx {
-        path 'vcf'
+    gvcf_idx {
+        path 'gvcf'
     }
 }
