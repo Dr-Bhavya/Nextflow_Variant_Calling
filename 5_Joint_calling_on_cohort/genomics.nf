@@ -3,6 +3,7 @@
 // Module INCLUDE statements
 include { SAMTOOLS_INDEX } from './modules/samtools_index.nf'
 include { GATK_HAPLOTYPECALLER } from './modules/gatk_haplotypecaller.nf'
+include { GATK_JOINTGENOTYPING } from './modules/gatk_jointgenotyping.nf'
 
 params {
     // Primary input (file of input files, one per line)
